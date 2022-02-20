@@ -1,0 +1,39 @@
+name: Automation - Update API Client
+
+on:
+  repository_dispatch:
+    types: [my-event]
+
+jobs:
+  myEvent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+
+      - name: Delete old client
+        run: rm -rf src
+
+      - run: |
+          docker run --rm \
+          -v .:/local \
+          openapitools/openapi-generator-cli generate \
+          -i https://petstore.swagger.io/v2/swagger.json \
+          -c /local/config.yml \
+          -g typescript \
+          -o /local/src/
+
+      - name: Commit changes
+        run: |
+              mv src/index.ts src/mod.ts
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git add -A
+              git commit -m "Update api client" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main

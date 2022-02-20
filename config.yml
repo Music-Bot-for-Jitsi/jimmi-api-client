@@ -1,0 +1,2 @@
+platform: deno
+supportsES6: true
