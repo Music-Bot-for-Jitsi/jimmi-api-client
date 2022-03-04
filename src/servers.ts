@@ -48,6 +48,6 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("//localhost:8000", {  })
+export const server1 = new ServerConfiguration<{  }>("//localhost:8000/api", {  })
 
 export const servers = [server1];
