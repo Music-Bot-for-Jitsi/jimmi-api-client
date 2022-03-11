@@ -1,6 +1,4 @@
 .gitignore
-DefaultApi.md
-apis/DefaultApi.ts
 apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts

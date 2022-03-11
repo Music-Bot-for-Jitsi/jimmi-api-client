@@ -7,5 +7,5 @@ export * from "./apis/exception.ts";
 export * from "./servers.ts";
 
 export type { PromiseMiddleware as Middleware } from './middleware.ts';
-export { PromiseDefaultApi as DefaultApi } from './types/PromiseAPI.ts';
+export { } from './types/PromiseAPI.ts';
 
