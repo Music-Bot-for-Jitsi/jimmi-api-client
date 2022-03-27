@@ -60,3 +60,21 @@
     <img src="https://sonarcloud.io/api/project_badges/measure?project=Music-Bot-for-Jitsi_jimmi-api-client&metric=bugs" alt="Bugs" />
   </a>
 </p>
+
+## Summary
+
+This api client can be used to control the Jitsi Integrated Musicbot Management Interface 🥳
+
+## Usage Example
+
+```ts
+import { createConfiguration, DefaultApi, ServerConfiguration } from 'https://deno.land/x/jimmi-api-client/mod.ts';
+
+const apiConfig = createConfiguration({
+  baseServer: new ServerConfiguration("http://your.bot/api"),
+});
+const jimmiApi = new DefaultApi(apiConfig);
+const instance = await jimmiApi.instancesPost();
+```
+
+For more information see [api documentation](https://github.com/Music-Bot-for-Jitsi/jimmi-api-client/src/DefaultApi.md).
