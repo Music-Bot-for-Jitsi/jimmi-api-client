@@ -1,2 +1,4 @@
+moduleName: api
 platform: deno
+projectName: jimmi-api-client
 supportsES6: true

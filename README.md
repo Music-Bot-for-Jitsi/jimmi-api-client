@@ -68,12 +68,12 @@ This api client can be used to control the Jitsi Integrated Musicbot Management 
 ## Usage Example
 
 ```ts
-import { createConfiguration, DefaultApi, ServerConfiguration } from 'https://deno.land/x/jimmi-api-client/mod.ts';
+import { api } from 'https://deno.land/x/jimmi-api-client/mod.ts';
 
-const apiConfig = createConfiguration({
-  baseServer: new ServerConfiguration("http://your.bot/api"),
+const apiConfig = api.createConfiguration({
+  baseServer: new api.ServerConfiguration('http://your.bot/api'),
 });
-const jimmiApi = new DefaultApi(apiConfig);
+const jimmiApi = new api.DefaultApi(apiConfig);
 const instance = await jimmiApi.instancesPost();
 ```
 
