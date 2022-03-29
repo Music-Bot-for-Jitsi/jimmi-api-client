@@ -3,6 +3,7 @@ import * as models from '../models/all.ts';
 import { Configuration} from '../configuration.ts'
 import { Observable, of, from } from '../rxjsStub.ts';
 import {mergeMap, map} from  '../rxjsStub.ts';
+import { InlineObject } from '../models/InlineObject.ts';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi.ts";
 export class ObservableDefaultApi {
@@ -39,6 +40,53 @@ export class ObservableDefaultApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.instancesGet(rsp)));
+            }));
+    }
+
+    /**
+     * Get detailed information about the conference the bot joined
+     * @param id UUID of the Jimmi instance
+     */
+    public instancesIdConferenceGet(id: string, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.instancesIdConferenceGet(id, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.instancesIdConferenceGet(rsp)));
+            }));
+    }
+
+    /**
+     * Update the joined conference of the instance
+     * @param id UUID of the Jimmi instance
+     * @param conference 
+     */
+    public instancesIdConferencePatch(id: string, conference: InlineObject, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.instancesIdConferencePatch(id, conference, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.instancesIdConferencePatch(rsp)));
             }));
     }
 

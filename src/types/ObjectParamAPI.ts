@@ -2,11 +2,36 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http.ts';
 import * as models from '../models/all.ts';
 import { Configuration} from '../configuration.ts'
 
+import { InlineObject } from '../models/InlineObject.ts';
 
 import { ObservableDefaultApi } from "./ObservableAPI.ts";
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi.ts";
 
 export interface DefaultApiInstancesGetRequest {
+}
+
+export interface DefaultApiInstancesIdConferenceGetRequest {
+    /**
+     * UUID of the Jimmi instance
+     * @type string
+     * @memberof DefaultApiinstancesIdConferenceGet
+     */
+    id: string
+}
+
+export interface DefaultApiInstancesIdConferencePatchRequest {
+    /**
+     * UUID of the Jimmi instance
+     * @type string
+     * @memberof DefaultApiinstancesIdConferencePatch
+     */
+    id: string
+    /**
+     * 
+     * @type InlineObject
+     * @memberof DefaultApiinstancesIdConferencePatch
+     */
+    conference: InlineObject
 }
 
 export interface DefaultApiInstancesIdGetRequest {
@@ -46,6 +71,22 @@ export class ObjectDefaultApi {
      */
     public instancesGet(param: DefaultApiInstancesGetRequest = {}, options?: Configuration): Promise<void> {
         return this.api.instancesGet( options).toPromise();
+    }
+
+    /**
+     * Get detailed information about the conference the bot joined
+     * @param param the request object
+     */
+    public instancesIdConferenceGet(param: DefaultApiInstancesIdConferenceGetRequest, options?: Configuration): Promise<void> {
+        return this.api.instancesIdConferenceGet(param.id,  options).toPromise();
+    }
+
+    /**
+     * Update the joined conference of the instance
+     * @param param the request object
+     */
+    public instancesIdConferencePatch(param: DefaultApiInstancesIdConferencePatchRequest, options?: Configuration): Promise<void> {
+        return this.api.instancesIdConferencePatch(param.id, param.conference,  options).toPromise();
     }
 
     /**

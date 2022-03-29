@@ -2,6 +2,7 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http.ts';
 import * as models from '../models/all.ts';
 import { Configuration} from '../configuration.ts'
 
+import { InlineObject } from '../models/InlineObject.ts';
 import { ObservableDefaultApi } from './ObservableAPI.ts';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi.ts";
@@ -21,6 +22,25 @@ export class PromiseDefaultApi {
      */
     public instancesGet(_options?: Configuration): Promise<void> {
         const result = this.api.instancesGet(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get detailed information about the conference the bot joined
+     * @param id UUID of the Jimmi instance
+     */
+    public instancesIdConferenceGet(id: string, _options?: Configuration): Promise<void> {
+        const result = this.api.instancesIdConferenceGet(id, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update the joined conference of the instance
+     * @param id UUID of the Jimmi instance
+     * @param conference 
+     */
+    public instancesIdConferencePatch(id: string, conference: InlineObject, _options?: Configuration): Promise<void> {
+        const result = this.api.instancesIdConferencePatch(id, conference, _options);
         return result.toPromise();
     }
 

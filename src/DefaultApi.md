@@ -1,10 +1,12 @@
-# .DefaultApi
+# api.DefaultApi
 
 All URIs are relative to */api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**instancesGet**](DefaultApi.md#instancesGet) | **GET** /instances | 
+[**instancesIdConferenceGet**](DefaultApi.md#instancesIdConferenceGet) | **GET** /instances/{id}/conference | 
+[**instancesIdConferencePatch**](DefaultApi.md#instancesIdConferencePatch) | **PATCH** /instances/{id}/conference | 
 [**instancesIdGet**](DefaultApi.md#instancesIdGet) | **GET** /instances/{id} | 
 [**instancesIdMusicGet**](DefaultApi.md#instancesIdMusicGet) | **GET** /instances/{id}/music | 
 [**instancesPost**](DefaultApi.md#instancesPost) | **POST** /instances | 
@@ -20,11 +22,11 @@ Returns a list of available Jimmi instances
 
 
 ```typescript
-import {  } from '';
+import { api } from 'jimmi-api-client';
 import * as fs from 'fs';
 
-const configuration = .createConfiguration();
-const apiInstance = new .DefaultApi(configuration);
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
 
 let body:any = {};
 
@@ -59,6 +61,123 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
+# **instancesIdConferenceGet**
+> void instancesIdConferenceGet()
+
+Get detailed information about the conference the bot joined
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdConferenceGetRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+};
+
+apiInstance.instancesIdConferenceGet(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Conference information |  -  |
+**404** | No instance found under the given id |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **instancesIdConferencePatch**
+> void instancesIdConferencePatch(conference)
+
+Update the joined conference of the instance
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdConferencePatchRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+  // InlineObject
+  conference: {
+    room: "room_example",
+    instance: "instance_example",
+  },
+};
+
+apiInstance.instancesIdConferencePatch(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conference** | **InlineObject**|  |
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Conference information updated |  -  |
+**400** | Invalid request body |  -  |
+**404** | No instance found under the given id |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 # **instancesIdGet**
 > void instancesIdGet()
 
@@ -68,13 +187,13 @@ Get detailed information about an instance
 
 
 ```typescript
-import {  } from '';
+import { api } from 'jimmi-api-client';
 import * as fs from 'fs';
 
-const configuration = .createConfiguration();
-const apiInstance = new .DefaultApi(configuration);
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
 
-let body:.DefaultApiInstancesIdGetRequest = {
+let body:api.DefaultApiInstancesIdGetRequest = {
   // string | UUID of the Jimmi instance
   id: "id_example",
 };
@@ -123,13 +242,13 @@ Get details about the running music
 
 
 ```typescript
-import {  } from '';
+import { api } from 'jimmi-api-client';
 import * as fs from 'fs';
 
-const configuration = .createConfiguration();
-const apiInstance = new .DefaultApi(configuration);
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
 
-let body:.DefaultApiInstancesIdMusicGetRequest = {
+let body:api.DefaultApiInstancesIdMusicGetRequest = {
   // string | UUID of the Jimmi instance
   id: "id_example",
 };
@@ -177,11 +296,11 @@ Create a new Jimmi instance
 
 
 ```typescript
-import {  } from '';
+import { api } from 'jimmi-api-client';
 import * as fs from 'fs';
 
-const configuration = .createConfiguration();
-const apiInstance = new .DefaultApi(configuration);
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
 
 let body:any = {};
 
@@ -225,11 +344,11 @@ Get a heartbeat
 
 
 ```typescript
-import {  } from '';
+import { api } from 'jimmi-api-client';
 import * as fs from 'fs';
 
-const configuration = .createConfiguration();
-const apiInstance = new .DefaultApi(configuration);
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
 
 let body:any = {};
 

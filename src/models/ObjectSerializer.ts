@@ -1,4 +1,6 @@
+export * from './InlineObject.ts';
 
+import { InlineObject } from './InlineObject.ts';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -23,6 +25,7 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "InlineObject": InlineObject,
 }
 
 export class ObjectSerializer {

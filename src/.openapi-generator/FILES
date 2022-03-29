@@ -10,6 +10,7 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
+models/InlineObject.ts
 models/ObjectSerializer.ts
 models/all.ts
 rxjsStub.ts
