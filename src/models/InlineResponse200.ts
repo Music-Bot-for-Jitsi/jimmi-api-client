@@ -12,34 +12,24 @@
 
 import { HttpFile } from '../http/http.ts';
 
-export class InlineObject {
+export class InlineResponse200 {
     /**
-    * The room to join
+    * The instance ID.
     */
-    'room': string;
-    /**
-    * The instance to join
-    */
-    'instance': string;
+    'id'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "room",
-            "baseName": "room",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "instance",
-            "baseName": "instance",
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InlineObject.attributeTypeMap;
+        return InlineResponse200.attributeTypeMap;
     }
 
     public constructor() {

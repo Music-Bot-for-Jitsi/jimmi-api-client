@@ -48,6 +48,6 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("/api", {  })
+export const server1 = new ServerConfiguration<{  "basePath": string  }>("", {  "basePath": "/api"  })
 
 export const servers = [server1];

@@ -1,6 +1,12 @@
 export * from './InlineObject.ts';
+export * from './InlineObject1.ts';
+export * from './InlineObject2.ts';
+export * from './InlineResponse200.ts';
 
 import { InlineObject } from './InlineObject.ts';
+import { InlineObject1 } from './InlineObject1.ts';
+import { InlineObject2 } from './InlineObject2.ts';
+import { InlineResponse200 } from './InlineResponse200.ts';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -26,6 +32,9 @@ let enumsMap: Set<string> = new Set<string>([
 
 let typeMap: {[index: string]: any} = {
     "InlineObject": InlineObject,
+    "InlineObject1": InlineObject1,
+    "InlineObject2": InlineObject2,
+    "InlineResponse200": InlineResponse200,
 }
 
 export class ObjectSerializer {

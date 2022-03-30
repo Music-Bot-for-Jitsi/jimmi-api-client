@@ -1,6 +1,6 @@
 # api.DefaultApi
 
-All URIs are relative to */api*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,13 +8,17 @@ Method | HTTP request | Description
 [**instancesIdConferenceGet**](DefaultApi.md#instancesIdConferenceGet) | **GET** /instances/{id}/conference | 
 [**instancesIdConferencePatch**](DefaultApi.md#instancesIdConferencePatch) | **PATCH** /instances/{id}/conference | 
 [**instancesIdGet**](DefaultApi.md#instancesIdGet) | **GET** /instances/{id} | 
+[**instancesIdMusicDelete**](DefaultApi.md#instancesIdMusicDelete) | **DELETE** /instances/{id}/music | 
 [**instancesIdMusicGet**](DefaultApi.md#instancesIdMusicGet) | **GET** /instances/{id}/music | 
+[**instancesIdMusicIndexDelete**](DefaultApi.md#instancesIdMusicIndexDelete) | **DELETE** /instances/{id}/music/{index} | 
+[**instancesIdMusicPatch**](DefaultApi.md#instancesIdMusicPatch) | **PATCH** /instances/{id}/music | 
+[**instancesIdMusicPost**](DefaultApi.md#instancesIdMusicPost) | **POST** /instances/{id}/music | 
 [**instancesPost**](DefaultApi.md#instancesPost) | **POST** /instances | 
 [**pingGet**](DefaultApi.md#pingGet) | **GET** /ping | 
 
 
 # **instancesGet**
-> void instancesGet()
+> Array<string> instancesGet()
 
 Returns a list of available Jimmi instances
 
@@ -42,7 +46,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**void**
+**Array<string>**
 
 ### Authorization
 
@@ -51,7 +55,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -62,7 +66,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **instancesIdConferenceGet**
-> void instancesIdConferenceGet()
+> any instancesIdConferenceGet()
 
 Get detailed information about the conference the bot joined
 
@@ -96,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -105,7 +109,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -117,7 +121,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **instancesIdConferencePatch**
-> void instancesIdConferencePatch(conference)
+> any instancesIdConferencePatch()
 
 Update the joined conference of the instance
 
@@ -134,8 +138,8 @@ const apiInstance = new api.DefaultApi(configuration);
 let body:api.DefaultApiInstancesIdConferencePatchRequest = {
   // string | UUID of the Jimmi instance
   id: "id_example",
-  // InlineObject
-  conference: {
+  // InlineObject (optional)
+  inlineObject: {
     room: "room_example",
     instance: "instance_example",
   },
@@ -151,13 +155,13 @@ apiInstance.instancesIdConferencePatch(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **conference** | **InlineObject**|  |
+ **inlineObject** | **InlineObject**|  |
  **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
 
 
 ### Return type
 
-**void**
+**any**
 
 ### Authorization
 
@@ -165,8 +169,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -179,7 +183,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **instancesIdGet**
-> void instancesIdGet()
+> any instancesIdGet()
 
 Get detailed information about an instance
 
@@ -213,6 +217,61 @@ Name | Type | Description  | Notes
 
 ### Return type
 
+**any**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Jimmi instance |  -  |
+**404** | No instance found under the given id |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **instancesIdMusicDelete**
+> void instancesIdMusicDelete()
+
+Clear the music playlist
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdMusicDeleteRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+};
+
+apiInstance.instancesIdMusicDelete(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+
+
+### Return type
+
 **void**
 
 ### Authorization
@@ -228,7 +287,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Jimmi instance |  -  |
+**204** | Playlist cleared |  -  |
 **404** | No instance found under the given id |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
@@ -236,7 +295,7 @@ No authorization required
 # **instancesIdMusicGet**
 > void instancesIdMusicGet()
 
-Get details about the running music
+Get details about the status, current track and playlist
 
 ### Example
 
@@ -283,12 +342,197 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Let\\&#39;s rock\\&#39;n roll! |  -  |
+**200** | Details about the running music |  -  |
+**404** | No instance found under the given id |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **instancesIdMusicIndexDelete**
+> void instancesIdMusicIndexDelete()
+
+Remove a track from the queue or skip the current track
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdMusicIndexDeleteRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+  // number | Track position in queue (starting with 1, submitting index 0 skips the current track)
+  index: ,
+};
+
+apiInstance.instancesIdMusicIndexDelete(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+ **index** | **number** | Track position in queue (starting with 1, submitting index 0 skips the current track) | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Track removed or skipped |  -  |
+**400** | Invalid index, either not a number, negative or higher than queue length |  -  |
+**404** | No instance found under the given id |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **instancesIdMusicPatch**
+> any instancesIdMusicPatch()
+
+Perform a status change on the music stream (playing, paused, stopped) and optionally change music url if the new status is \"playing\"
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdMusicPatchRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+  // InlineObject2 (optional)
+  inlineObject2: {
+    status: "status_example",
+    current: "current_example",
+  },
+};
+
+apiInstance.instancesIdMusicPatch(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inlineObject2** | **InlineObject2**|  |
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+
+
+### Return type
+
+**any**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Status and url updated |  -  |
+**400** | Unknown status change requested, invalid video url provided or url provided with new status other than \&quot;playing\&quot; |  -  |
+**404** | No instance found under the given id |  -  |
+**502** | Could not find audio file url for the given video url |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **instancesIdMusicPost**
+> any instancesIdMusicPost()
+
+Add a music video url to playlist
+
+### Example
+
+
+```typescript
+import { api } from 'jimmi-api-client';
+import * as fs from 'fs';
+
+const configuration = api.createConfiguration();
+const apiInstance = new api.DefaultApi(configuration);
+
+let body:api.DefaultApiInstancesIdMusicPostRequest = {
+  // string | UUID of the Jimmi instance
+  id: "id_example",
+  // InlineObject1 (optional)
+  inlineObject1: {
+    url: "url_example",
+  },
+};
+
+apiInstance.instancesIdMusicPost(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inlineObject1** | **InlineObject1**|  |
+ **id** | [**string**] | UUID of the Jimmi instance | defaults to undefined
+
+
+### Return type
+
+**any**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Successfully added url to playlist |  -  |
+**400** | No url or invalid url provided |  -  |
+**404** | No instance found under the given id |  -  |
+**502** | Could not find audio file url for the given video url |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **instancesPost**
-> void instancesPost()
+> InlineResponse200 instancesPost()
 
 Create a new Jimmi instance
 
@@ -316,7 +560,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**void**
+**InlineResponse200**
 
 ### Authorization
 
@@ -325,7 +569,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
