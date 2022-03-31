@@ -77,4 +77,4 @@ const jimmiApi = new api.DefaultApi(apiConfig);
 const instance = await jimmiApi.instancesPost();
 ```
 
-For more information see [api documentation](https://github.com/Music-Bot-for-Jitsi/jimmi-api-client/src/DefaultApi.md).
+For more information see [api documentation](https://github.com/Music-Bot-for-Jitsi/jimmi-api-client/blob/main/src/DefaultApi.md).
