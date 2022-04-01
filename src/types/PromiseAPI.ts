@@ -69,7 +69,7 @@ export class PromiseDefaultApi {
      * Get details about the status, current track and playlist
      * @param id UUID of the Jimmi instance
      */
-    public instancesIdMusicGet(id: string, _options?: Configuration): Promise<void> {
+    public instancesIdMusicGet(id: string, _options?: Configuration): Promise<any> {
         const result = this.api.instancesIdMusicGet(id, _options);
         return result.toPromise();
     }

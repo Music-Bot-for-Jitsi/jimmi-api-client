@@ -143,7 +143,7 @@ export class ObservableDefaultApi {
      * Get details about the status, current track and playlist
      * @param id UUID of the Jimmi instance
      */
-    public instancesIdMusicGet(id: string, _options?: Configuration): Observable<void> {
+    public instancesIdMusicGet(id: string, _options?: Configuration): Observable<any> {
         const requestContextPromise = this.requestFactory.instancesIdMusicGet(id, _options);
 
         // build promise chain

@@ -166,7 +166,7 @@ export class ObjectDefaultApi {
      * Get details about the status, current track and playlist
      * @param param the request object
      */
-    public instancesIdMusicGet(param: DefaultApiInstancesIdMusicGetRequest, options?: Configuration): Promise<void> {
+    public instancesIdMusicGet(param: DefaultApiInstancesIdMusicGetRequest, options?: Configuration): Promise<any> {
         return this.api.instancesIdMusicGet(param.id,  options).toPromise();
     }
 
